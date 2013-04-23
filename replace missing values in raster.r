@@ -2,6 +2,8 @@ rm(list=ls())
 
 library(raster)
 
+library(rgdal)
+
 
 setwd("/path/to/directory")
 
@@ -48,7 +50,7 @@ ord_serie <- order(min_dist,decreasing=TRUE)
 
 for (i in ord_serie){
 minimum_dist <- min(distanceFromPoints(asp_median,c(x[i],y[i]))[,][which(!is.na(asp_median[,]))])
-nn_index <- which(distanceFromPoints(asp_median,c(x[i],y[i]))[,]==minimum_dist)[which(distanceFromPoints(asp_median,c(x[1],y[1]))[,]==minimum_dist) %in% which(!is.na(asp_median[,]))]
+nn_index <- which(distanceFromPoints(asp_median,c(x[i],y[i]))[,]==minimum_dist)[which(distanceFromPoints(asp_median,c(x[i],y[i]))[,]==minimum_dist) %in% which(!is.na(asp_median[,]))]
 asp_median[which(is.na(masq_hydro[,]))[i]] <- median(getValues(asp_median)[nn_index])
 }
 
